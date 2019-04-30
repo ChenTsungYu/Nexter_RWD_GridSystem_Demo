@@ -1,0 +1,6 @@
+.sidebar{
+    background: $color-primary;
+    // 往下延伸至底部
+    grid-column: sidebar-start / sidebar-end;
+    grid-row: 1 /-1; 
+}
