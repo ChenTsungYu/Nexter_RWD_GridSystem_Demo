@@ -1,4 +1,41 @@
-.features{
-    background: $color-grey-light-2;
+.features {
+    //background: $color-grey-light-2;
     grid-column: center-start / center-end;
+    margin: 15rem 0;
+
+    display: grid;
+   // grid-template-columns: repeat(3, 1fr);
+    // grid-template-columns為隱式網格
+
+    // 改為RWD效果 auto-fit
+    // 設置在最小25rem 最大延伸之間
+    // 單一網格寬度小於25rem時即換行
+    grid-template-columns: repeat(auto-fit, minmax(25rem,1fr));
+    grid-gap: 6rem;
+    align-items: start;
+}
+
+.feature {
+
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    // 隱性網格行，自動計算放置
+
+    grid-row-gap: 1.5rem;
+    grid-column-gap: 2.5rem;
+
+    &__icon {
+        fill: $color-primary;
+        width: 4.5rem;
+        height: 4.5rem;
+        //grid-row: 1 / -1; // icon的網格行無法填滿
+        // 因為沒有定義網格行，不知道終點網格行在哪裡
+        // -1 只限制於顯性網格
+        // solution: 採 span
+       grid-row: 1 / span 2; 
+       transform: translateY(-1rem);
+    }
+    &__text{
+        font-size: 1.7rem;
+    }
 }
