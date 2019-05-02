@@ -11,32 +11,58 @@ $color-grey-dark-1: #54483A;
 $color-grey-dark-2: #6D5D4B;
 
 // FONT VARIABLES
-$font-primary: 'Nunito', sans-serif;
-$font-display: 'Josefin Sans', sans-serif;
+$font-primary: 'Nunito',
+sans-serif;
+$font-display: 'Josefin Sans',
+sans-serif;
+// Responsive Break Point
+$bp-largest: 75rem; // 1200px
+$bp-large: 62.5rem; // 1000px
+$bp-medium: 50em;    // 800px;
+$bp-small: 37.5em;    // 600px;
 
-*,*::before,*::after{
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: inherit;
 }
-html{
+
+html {
     box-sizing: border-box;
-    font-size: 62.5%; // 1rem = 10px
+    font-size: 62.5%; // 1rem = 10px  => 10px / 16px 
+
+    @media only screen and (max-width: $bp-largest) {
+        font-size: 50%;
+    }
 }
-body{
-    font-family:$font-primary;
-    color:  $color-grey-dark-2;
+
+body {
+    font-family: $font-primary;
+    color: $color-grey-dark-2;
     font-weight: 300;
     line-height: 1.6;
 }
-.container{
+
+.container {
     //step1
     display: grid;
     // 第2、4行 : min-content 使內容自動撐開
-    grid-template-rows: 80vh min-content 40vw repeat(3,min-content);
+    grid-template-rows: 80vh min-content 40vw repeat(3, min-content);
     //  設定8列，最大寬度140px，最小為內容寬度
     // sidebar 為80px
     //grid-template-columns: [sidebar-start] 8rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end]; //   1140 / 8 = 142.5 
     grid-template-columns: [sidebar-start] 8rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
-   
+
+    @media only screen and (max-width:$bp-large ){
+    grid-template-rows: 6rem 80vh min-content 40vw repeat(3, min-content);
+    grid-template-columns:[full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
+    }
+    @media only screen and (max-width:$bp-medium ){
+        //grid-template-rows: 6rem calc(100vh - 6rem) min-content min-content  40vw repeat(3, min-content);
+        // 只需調整sidebar 、 header，其餘由內容撐開
+        
+        grid-template-rows: 6rem calc(100vh - 6rem);
+        }
 }

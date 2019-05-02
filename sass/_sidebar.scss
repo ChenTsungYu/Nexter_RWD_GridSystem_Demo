@@ -1,13 +1,30 @@
-.sidebar{
+.sidebar {
     background: $color-primary;
     // 往下延伸至底部
     grid-column: sidebar-start / sidebar-end;
-    grid-row: 1 /-1; 
+    grid-row: 1 /-1;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+
+    @media only screen and (max-width: $bp-large) {
+        grid-column: 1 / -1;
+        -ms-grid-row: 1;
+        -ms-grid-row-span: 1;
+        grid-row: 1 / 2;
+        -webkit-box-pack: end;
+            -ms-flex-pack: end;
+                justify-content: flex-end;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+    }
 }
 
-.nav-btn{
+.nav-btn {
     border: none;
     border-radius: 0;
 
@@ -24,7 +41,29 @@
         content: "";
         display: block;
     }
-    &::before { transform: translateY(-1.5rem); }
-    &::after { transform: translateY(1.3rem); }
-    
+
+    &::before {
+        -webkit-transform: translateY(-1.5rem);
+                transform: translateY(-1.5rem);
+    }
+
+    &::after {
+        -webkit-transform: translateY(1.3rem);
+                transform: translateY(1.3rem);
+    }
+
+    @media only screen and (max-width:$bp-large) {
+        margin-top: 0;
+        margin-right: 3rem;
+
+        &::before {
+            -webkit-transform: translateY(-1.2rem);
+                    transform: translateY(-1.2rem);
+        }
+
+        &::after {
+            -webkit-transform: translateY(1rem);
+                    transform: translateY(1rem);
+        }
+    }
 }
